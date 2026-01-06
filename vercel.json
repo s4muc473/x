@@ -1,8 +1,76 @@
 {
-    "rewrites": [
+    "version": 2,
+    "builds": [
+        {
+            "src": "server.js",
+            "use": "@vercel/node",
+            "config": {
+                "maxLambdaSize": "15mb",
+                "includeFiles": [
+                    "dist/**",
+                    "index.html",
+                    "package.json",
+                    "package-lock.json"
+                ]
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "/server.js",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE",
+                "PATCH",
+                "OPTIONS"
+            ]
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/server.js",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE",
+                "PATCH",
+                "OPTIONS"
+            ]
+        }
+    ],
+    "env": {
+        "NODE_ENV": "production"
+    },
+    "functions": {
+        "server.js": {
+            "maxDuration": 30,
+            "memory": 3008
+        }
+    },
+    "headers": [
         {
             "source": "/(.*)",
-            "destination": "/index.html"
+            "headers": [
+                {
+                    "key": "Access-Control-Allow-Origin",
+                    "value": "*"
+                },
+                {
+                    "key": "Access-Control-Allow-Methods",
+                    "value": "GET,POST,PUT,DELETE,OPTIONS"
+                },
+                {
+                    "key": "Access-Control-Allow-Headers",
+                    "value": "X-Requested-With, Content-Type, Authorization"
+                },
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=0, must-revalidate"
+                }
+            ]
         }
     ]
 }
