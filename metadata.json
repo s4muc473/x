@@ -1,0 +1,5 @@
+{
+  "name": "Project Cost Allocator 2026",
+  "description": "A financial dashboard to calculate team dedication and human capital costs per project based on the 2026 budget and temporal constraints.",
+  "requestFramePermissions": []
+}
