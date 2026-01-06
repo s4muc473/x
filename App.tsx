@@ -7,7 +7,7 @@ import TeamManagement from './components/TeamManagement';
 import { calculateFinancials } from './utils/calculations';
 import { LayoutDashboard, Users, Calculator, Wallet, Settings, Cloud, CheckCircle, Loader2, AlertTriangle, Database } from 'lucide-react';
 
-const API_URL = 'http://localhost:3000/api/data';
+const API_URL = 'https://x-zeta-beryl.vercel.app/api/data';
 const LOCAL_STORAGE_KEY = 'app_data_v1';
 
 type PersistenceMode = 'cloud' | 'local' | 'offline';
